@@ -1,8 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
-import axios, { AxiosError } from "axios";
 import { UseUsersInput, UseUsersResponse } from "../types/Users";
 
-const backend_url = "https://tan-stack-table-backend.onrender.com";
+// const backend_url = "https://tan-stack-table-backend.onrender.com";
+const backend_url = "http://localhost:3000";
 
 const getAllUsersFn: {
   ({
@@ -60,7 +60,7 @@ const getAllUsersFn: {
     }
   }
 
-  const res = await axios.get(
+  const res = await fetch(
     `${backend_url}/users?${
       first_name !== "" ? `first_name=${first_name}&` : ""
     }${last_name !== "" ? `last_name=${last_name}&` : ""}${
@@ -72,7 +72,11 @@ const getAllUsersFn: {
     }page=${page}&limit=${per_page}`
   );
 
-  return res.data;
+  if (!res.ok) {
+    throw new Error(res.statusText);
+  }
+
+  return await res.json();
 };
 
 export const useGetUsers = ({
@@ -82,7 +86,7 @@ export const useGetUsers = ({
 }: UseUsersInput) => {
   const { data: allUsersData, isLoading: isAllUsersDataLoading } = useQuery<
     UseUsersResponse,
-    AxiosError
+    Error
   >({
     queryKey: ["users", sorting, columnFilters, pagination],
     queryFn: () =>
