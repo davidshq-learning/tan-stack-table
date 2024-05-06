@@ -21,6 +21,8 @@ export default function TanStackBasicTableTableComponent<TData>({
     }
   };
 
+  console.log(table.getRowModel().rows)
+  
   return (
     <Table>
       <TableHeader>

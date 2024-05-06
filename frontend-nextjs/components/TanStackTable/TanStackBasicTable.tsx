@@ -26,6 +26,9 @@ export default function TanStackBasicTable<TData, TValue>({
   columnFilters = [],
   setColumnFilters,
 }: TableProps<TData, TValue>) {
+
+  console.log('paginatedTableData', paginatedTableData?.data)
+  
   const table = useReactTable({
     data: paginatedTableData?.data || [],
     columns,
