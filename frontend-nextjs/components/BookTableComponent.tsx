@@ -1,4 +1,4 @@
-import { useGetUsers } from "@/api/useGetUsers";
+import { useGetBooks } from "@/api/useGetBooks";
 import { useDebounce } from "@/hooks/useDebounce";
 import { Book } from "@/types/Books";
 import {
@@ -27,7 +27,7 @@ const UserTableComponent = () => {
     pageSize: 20, //default page size
   });
 
-  const { allUsersData, isAllUsersDataLoading } = useGetUsers({
+  const { allBooksData, isAllBooksDataLoading } = useGetBooks({
     sorting,
     columnFilters: debouncedColumnFilters,
     pagination,
@@ -82,8 +82,8 @@ const UserTableComponent = () => {
   return (
     <>
       <TanStackBasicTable
-        isTableDataLoading={isAllUsersDataLoading}
-        paginatedTableData={allUsersData}
+        isTableDataLoading={isAllBooksDataLoading}
+        paginatedTableData={allBooksData}
         columns={userColumns}
         pagination={pagination}
         setPagination={setPagination}
