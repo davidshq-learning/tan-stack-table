@@ -10,7 +10,7 @@ import {
 import { useState } from "react";
 import TanStackBasicTable from "./TanStackTable/TanStackBasicTable";
 
-const UserTableComponent = () => {
+const BookTableComponent = () => {
   // sorting state of the table
   const [sorting, setSorting] = useState<SortingState>([]);
 
@@ -33,50 +33,25 @@ const UserTableComponent = () => {
     pagination,
   });
 
-  const userColumns: ColumnDef<Book>[] = [
+  console.log('allBooksData', allBooksData)
+
+  const bookColumns: ColumnDef<Book>[] = [
     {
       header: "ID",
-      accessorKey: "user_id",
+      accessorKey: "id",
       enableColumnFilter: false,
     },
     {
-      header: "Username",
-      accessorKey: "username",
+      header: "ISBN",
+      accessorKey: "isbn",
     },
     {
-      header: "Email",
-      accessorKey: "email",
+      header: "Title",
+      accessorKey: "title",
     },
     {
-      header: "First Name",
-      accessorKey: "first_name",
-    },
-    {
-      header: "Last Name",
-      accessorKey: "last_name",
-    },
-    {
-      header: "Gender",
-      accessorKey: "gender",
-      enableColumnFilter: false,
-    },
-    {
-      header: "Birthdate",
-      accessorKey: "birthdate",
-      enableColumnFilter: false,
-    },
-    {
-      header: "Country",
-      accessorKey: "country",
-    },
-    {
-      header: "City",
-      accessorKey: "city",
-    },
-    {
-      header: "Fav Color",
-      accessorKey: "favorite_color",
-      enableColumnFilter: false,
+      header: "Description",
+      accessorKey: "description",
     },
   ];
   return (
@@ -84,7 +59,7 @@ const UserTableComponent = () => {
       <TanStackBasicTable
         isTableDataLoading={isAllBooksDataLoading}
         paginatedTableData={allBooksData}
-        columns={userColumns}
+        columns={bookColumns}
         pagination={pagination}
         setPagination={setPagination}
         sorting={sorting}
@@ -96,4 +71,4 @@ const UserTableComponent = () => {
   );
 };
 
-export default UserTableComponent;
+export default BookTableComponent;
