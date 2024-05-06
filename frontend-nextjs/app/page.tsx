@@ -1,15 +1,11 @@
 "use client";
 import UserTableComponent from "@/components/UserTableComponent";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-
-const queryClient = new QueryClient();
+import { SWRConfig } from "swr";
 
 export default function Home() {
   return (
-    <QueryClientProvider client={queryClient}>
+    <SWRConfig value={{ revalidateOnFocus: false }}>
       <UserTableComponent />
-      <ReactQueryDevtools />
-    </QueryClientProvider>
+    </SWRConfig>
   );
 }
