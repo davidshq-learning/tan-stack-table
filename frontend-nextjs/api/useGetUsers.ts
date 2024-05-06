@@ -1,9 +1,9 @@
 import useSWR from 'swr';
-import { UseUsersInput, UseUsersResponse } from "../types/Users";
+import { UseBooksInput, UseBooksResponse } from "../types/Books";
 
 const backend_url = "http://localhost:3000";
 
-const getAllUsersFn = async ({ sorting, columnFilters, pagination }: UseUsersInput): Promise<UseUsersResponse> => {
+const getAllUsersFn = async ({ sorting, columnFilters, pagination }: UseBooksInput): Promise<UseBooksResponse> => {
   // Define the values for pagination, filtering, and sorting
   const page = pagination.pageIndex + 1,
     per_page = pagination.pageSize;
@@ -30,8 +30,8 @@ const getAllUsersFn = async ({ sorting, columnFilters, pagination }: UseUsersInp
   return await res.json();
 };
 
-export const useGetUsers = (input: UseUsersInput) => {
-  const { data: allUsersData, error } = useSWR<UseUsersResponse, Error>(
+export const useGetUsers = (input: UseBooksInput) => {
+  const { data: allUsersData, error } = useSWR<UseBooksResponse, Error>(
     ["users", input.sorting, input.columnFilters, input.pagination],
     () => getAllUsersFn(input)
   );

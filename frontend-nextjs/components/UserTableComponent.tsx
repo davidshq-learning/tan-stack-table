@@ -1,6 +1,6 @@
 import { useGetUsers } from "@/api/useGetUsers";
 import { useDebounce } from "@/hooks/useDebounce";
-import { User } from "@/types/Users";
+import { Book } from "@/types/Books";
 import {
   ColumnDef,
   ColumnFiltersState,
@@ -33,7 +33,7 @@ const UserTableComponent = () => {
     pagination,
   });
 
-  const userColumns: ColumnDef<User>[] = [
+  const userColumns: ColumnDef<Book>[] = [
     {
       header: "ID",
       accessorKey: "user_id",
